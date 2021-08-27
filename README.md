@@ -1,4 +1,12 @@
-Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
+# Census Data Classification
+
+**Project starter code:**
+```
+https://github.com/udacity/nd0821-c3-starter-code 
+```
+# Overview
+
+Develop a classification model on publicly available Census Bureau data.  Unit tests are created to monitor the model performance on various slices of the data, before the model is deployed using the FastAPI package and create API tests. Both the slice-validation and the API tests will be incorporated into a **continuous integration/continuous deployment** `CI/CD` framework using GitHub Actions. Both the dataset and the model are updated using `git` and `DVC`
 
 # Environment Set up
 * Download and install conda if you don’t have it already.
