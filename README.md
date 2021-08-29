@@ -30,6 +30,7 @@ pipreqs [project_folder]
     * pip freeze > requirements.txt [extract all depen. in an envriorment] 
 ```
 
+* [Setup DCV Actions](https://github.com/iterative/setup-dvc)
 ## Repositories
 
 * Setup GitHub Actions on your repo. You can use one of the pre-made GitHub Actions if at a minimum it runs pytest and flake8 on push and requires both to pass without error.
