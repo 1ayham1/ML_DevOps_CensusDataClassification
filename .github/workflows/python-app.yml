@@ -27,7 +27,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
         aws-region: us-west-1
     - name: DVC Actions Setup 
-      uses: actions/checkout@v2
+      uses: iterative/setup-dvc@v1
     - name: Recursive Pull Data from DVC
       run: |
         dvc pull data -a -R -f
