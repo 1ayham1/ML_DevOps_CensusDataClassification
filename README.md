@@ -15,6 +15,19 @@ Develop a classification model on publicly available Census Bureau data.  Unit t
     * conda create -n [envname] "python=3.8" scikit-learn dvc pandas numpy pytest jupyter jupyterlab fastapi uvicorn -c conda-forge
     * Install git either through conda (“conda install git”) or through your CLI, e.g. sudo apt-get git.
 
+* AWS IAM:
+get credintials after from IAM (AWS Acess Key ID, AWS Secret Access Key)
+    * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+    * [Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+
+* Extract requirements from within a given project not the whole envirnoment:
+```
+pip install pipreqs
+pipreqs [project_folder]
+
+    * pip freeze > requirements.txt [extract all depen. in an envriorment] 
+```
+
 ## Repositories
 
 * Setup GitHub Actions on your repo. You can use one of the pre-made GitHub Actions if at a minimum it runs pytest and flake8 on push and requires both to pass without error.
