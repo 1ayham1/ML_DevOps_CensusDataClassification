@@ -20,8 +20,9 @@ get credintials after from IAM (AWS Acess Key ID, AWS Secret Access Key)
     * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
     * [Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
     * Add to github actions:
-    
-    `root repo --> settings --> Secrets -->New repo secret--> name -->value`
+
+    `root repo --> settings --> Secrets -->New repo secret
+    --> name{to be used from gethub actions} --> value {you wnat to be hidden. example AWS secret key}`
 
 * Extract requirements from within a given project not the whole envirnoment:
 ```
