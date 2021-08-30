@@ -41,6 +41,8 @@ get credintials after from IAM (AWS Acess Key ID, AWS Secret Access Key)
 
     `dvc push --remote ayham-remote`
 
+    * [DVC_Basics](https://www.youtube.com/watch?v=kLKBcPonMYw)
+
 
 ```
 pip install pipreqs
