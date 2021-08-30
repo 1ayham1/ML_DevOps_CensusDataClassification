@@ -5,9 +5,9 @@
 https://github.com/udacity/nd0821-c3-starter-code 
 ```
 # Overview
-Adding Actions
 
-Develop a classification model on publicly available Census Bureau data.  Unit tests are created to monitor the model performance on various slices of the data, before the model is deployed using the FastAPI package and create API tests. Both the slice-validation and the API tests will be incorporated into a **continuous integration/continuous deployment** `CI/CD` framework using GitHub Actions. Both the dataset and the model are updated using `git` and `DVC`
+Develop a classification model on publicly available [Census Bureau data](https://archive.ics.uci.edu/ml/datasets/census+income).  
+Unit tests are created to monitor the model performance on various slices of the data, before the model is deployed using the FastAPI package and create API tests. Both the slice-validation and the API tests will be incorporated into a **continuous integration/continuous deployment** `CI/CD` framework using GitHub Actions. Both the dataset and the model are updated using `git` and `DVC`
 
 # Environment Set up
 * Download and install conda if you don’t have it already.
@@ -24,7 +24,10 @@ get credintials after from IAM (AWS Acess Key ID, AWS Secret Access Key)
     `root repo --> settings --> Secrets -->New repo secret
     --> name{to be used from gethub actions} --> value {you wnat to be hidden. example AWS secret key}`
 
-* Extract requirements from within a given project not the whole envirnoment:
+* Extract requirements from within a given project not the whole envirnoment.
+
+* To creat Amazon S3 remote using DVC. [link](https://dvc.org/doc/command-reference/remote/add)
+
 ```
 pip install pipreqs
 pipreqs [project_folder]
@@ -39,11 +42,6 @@ pip freeze > requirements.txt [extract all depen. in an envriorment]
     * Make sure you set up the GitHub Action to have the same version of Python as you used in development.
 * Set up a remote repository for dvc.
 
-# Data
-* Download census.csv and commit it to dvc.
-* This data is messy, try to open it in pandas and see what you get.
-* To clean it, use your favorite text editor to remove all spaces.
-* Commit this modified data to dvc (we often want to keep the raw data untouched but then can keep updating the cooked version).
 
 # Model
 * Using the starter code, write a machine learning model that trains on the clean data and saves the model. Complete any function that has been started.
