@@ -25,7 +25,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ID }}
         aws-secret-access-key: ${{ secrets.AWS_Serect }}
-        aws-region: us-west-1
+        aws-region: us-east-1
     - name: DVC Actions Setup 
       uses: iterative/setup-dvc@v1
     - name: Recursive Pull Data from DVC
