@@ -10,6 +10,7 @@ Develop a classification model on publicly available [Census Bureau data](https:
 Unit tests are created to monitor the model performance on various slices of the data, before the model is deployed using the FastAPI package and create API tests. Both the slice-validation and the API tests will be incorporated into a **continuous integration/continuous deployment** `CI/CD` framework using GitHub Actions. Both the dataset and the model are updated using `git` and `DVC`
 
 # Environment Set up
+
 * Download and install conda if you don’t have it already.
     * Use the supplied requirements file to create a new environment, or
     * conda create -n [envname] "python=3.8" scikit-learn dvc pandas numpy pytest jupyter jupyterlab fastapi uvicorn -c conda-forge
@@ -27,6 +28,19 @@ get credintials after from IAM (AWS Acess Key ID, AWS Secret Access Key)
 * Extract requirements from within a given project not the whole envirnoment.
 
 * To creat Amazon S3 remote using DVC. [link](https://dvc.org/doc/command-reference/remote/add)
+
+    * First create a bucket [link](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/create-bucket.html):
+
+    `aws s3api create-bucket --bucket ayham-bucket --region us-east-1`
+
+    * create DVC remote:
+
+    `dvc remote add -d ayham-remote s3://ayham-bucket/CensusProject` 
+
+    * move to ./data and push to new remote
+
+    `dvc push --remote ayham-remote`
+
 
 ```
 pip install pipreqs
