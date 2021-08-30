@@ -1,0 +1,4 @@
+[core]
+    remote = ayham-remote
+['remote "ayham-remote"']
+    url = s3://ayham-bucket/CensusProject
