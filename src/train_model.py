@@ -29,6 +29,7 @@ logger = logging.getLogger()
 model_path = os.path.abspath('model')
 model_name = os.path.join(model_path, "trainedmodel.pkl")
 
+
 def data_split():
     """returns data {X,y} splitted in training and testing"""
     
