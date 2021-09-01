@@ -117,8 +117,11 @@ def train_models(train_from_scratch=True):
         model = joblib.load(model_name)
 
     logger.info("Model Evaluation............\n")
-    scoring.score_model(X_train, X_test, y_train, y_test)
+
+    scoring.score_model(X_train, y_train, label='training')
+    scoring.score_model(X_test, y_test, label='testing')
+    
     
 
 if __name__ == "__main__":
-    train_models(train_from_scratch=True)
+    train_models(train_from_scratch=False)
