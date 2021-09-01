@@ -1,9 +1,11 @@
 '''unit test class for churn library'''
+
 import time
+import os
 import logging
 import unittest
 
-from pandas.api.types import is_string_dtype
+import pandas as pd
 from functools import wraps
 
 import train_model
@@ -15,16 +17,20 @@ data_folder = '../data/'
 data_path = os.path.join(data_folder, 'census.csv')
 save_name = os.path.join(data_folder, 'clean_census_data.csv')
 
-keep_cols = [
-    'Customer_Age',
-    ]
+#to suppress other logging 
+#https://stackoverflow.com/questions/35898160/logging-module-not-writing-to-file
+
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
 
 logging.basicConfig(
-    filename='./logs/TDD_cases.log',
     level=logging.INFO,
-    # filemode='w',
-    format='%(name)s - %(levelname)s - %(message)s')
+    format='%(name)s - %(levelname)s - %(message)s',
+    filename="./logs/TDD_cases.log",
+    filemode='w',
+    )
 
+logger = logging.getLogger()
 
 def get_time(function):
     '''
@@ -35,9 +41,9 @@ def get_time(function):
         t_start = time.time()
         run_fun = function(*args, **kwargs)
         t_end = time.time() - t_start
-        logging.info('%s ran in %0.3f sec ', function.__name__, t_end)
-        logging.info('---------------------------------------------------')
-        # logging.info(f'{"-"*60}') #does not use lazy formatting
+        logger.info('%s ran in %0.3f sec ', function.__name__, t_end)
+        logger.info('---------------------------------------------------')
+        # logger.info(f'{"-"*60}') #does not use lazy formatting
 
         return run_fun
     return wrapper
@@ -57,22 +63,22 @@ class TestingAndLogging(unittest.TestCase):
 
         try:
             df = pd.read_csv(data_path, skipinitialspace=True)
-            logging.info("Testing import_data: SUCCESS")
+            logger.info("Testing import_data: SUCCESS")
 
         except FileNotFoundError as err:
-            logging.error("Testing import_data: file wasn't found")
+            logger.error("Testing import_data: file wasn't found")
             raise err
 
         try:
             assert df.shape[0] > 0
             assert df.shape[1] > 0
-            logging.info(
+            logger.info(
                 'input data has %d rows and %d columns',
                 df.shape[0],
                 df.shape[1])
 
         except AssertionError as err:
-            logging.error(
+            logger.error(
                 "Testing import_data: The file doesn't appear to have rows and columns")
             raise err
 
@@ -85,7 +91,7 @@ class TestingAndLogging(unittest.TestCase):
             data_ingestion.read_and_clean()
             
         except Exception as err:
-            logging.error(
+            logger.error(
                 "someting is wrong with read_and_clean()")
             raise err
 
@@ -95,10 +101,10 @@ class TestingAndLogging(unittest.TestCase):
 
         try:
             train_model.train_models(train_from_scratch=False)
-            logging.info("train_models ran successfully!")
+            logger.info("train_models ran successfully!")
 
         except Exception as err:
-            logging.error("someting is wrong with train_models()")
+            logger.error("someting is wrong with train_models()")
             raise err
 
 
