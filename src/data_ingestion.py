@@ -24,7 +24,7 @@ def read_and_clean():
 
     df_clean.drop_duplicates(inplace=True)
     df_clean.replace({'?': np.nan},inplace = True)
-    #df_clean.dropna(axis='columns', how='any', inplace=True) #to be imputed later
+    df_clean.dropna(axis='index', how='any', inplace=True) #to be imputed later
     df_clean.drop("capital-gain",axis=1,inplace=True)
     df_clean.drop("capital-loss",axis=1,inplace=True)
 

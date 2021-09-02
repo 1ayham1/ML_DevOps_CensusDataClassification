@@ -28,7 +28,7 @@ def score_model(X_in, y_val, label='testing'):
         model = pickle.load(file)
 
 
-    logger.info("Scoring data_train: new data is ingested.")
+    logger.info("Scoring:...........")
     
     preds_vals = model.predict(X_in)
     precision_tr, recall_tr, fbeta_tr = compute_model_metrics(y_val, preds_vals)
@@ -41,7 +41,7 @@ def score_model(X_in, y_val, label='testing'):
 
     print(f"{'='*50}")
 
-    logger.info("Scoring data_test...")
+    return precision_tr, recall_tr, fbeta_tr 
 
 
 def compute_model_metrics(y, preds):

@@ -80,11 +80,11 @@ def get_inference_pipeline(clf_model):
         remainder="drop",  # This drops the columns that we do not transform
     )
 
-    
+    clf_svm = SVC(random_state = 42, kernel='rbf')
     #Use the explicit Pipeline constructor so you can assign the names to the steps, do not use make_pipeline
     sk_pipe = Pipeline([
             ("preprocessor", preprocessor),
-            ("random_forest", clf_model),
+            ("random_forest", clf_svm),
     ])
 
     return sk_pipe
@@ -102,9 +102,9 @@ def train_models(train_from_scratch=True):
     if(train_from_scratch):
 
         logger.info("Training a new model............")
-        clf_svm = SVC(random_state = 42, kernel='rbf')
         
-        model = get_inference_pipeline(clf_svm)
+        
+        model = get_inference_pipeline()
         
         logger.info("fitting model..........")
         model.fit(X_train, y_train)
@@ -114,6 +114,9 @@ def train_models(train_from_scratch=True):
 
     else:
         logger.info("loading saved model............")
+
+        
+
         model = joblib.load(model_name)
 
     logger.info("Model Evaluation............\n")

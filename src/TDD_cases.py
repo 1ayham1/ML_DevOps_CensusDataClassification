@@ -54,7 +54,7 @@ class TestingAndLogging(unittest.TestCase):
 
     def setUp(self):
         '''prepare parameters to be used in the test'''
-      # needs refactoring so that churn class asserts read file correctness
+      
         self.df = pd.read_csv(data_path, skipinitialspace=True)
     
     @get_time
