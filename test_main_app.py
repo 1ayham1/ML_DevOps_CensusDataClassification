@@ -50,7 +50,7 @@ class TestingAndLogging(unittest.TestCase):
         """test fastapi post for inference below"""
 
         response = self.client.post("/", json=self.input_below)
-        
+
         assert response.status_code == 200
         assert response.json() == "salary is prabaly is less than 50k"
 
@@ -58,7 +58,7 @@ class TestingAndLogging(unittest.TestCase):
         """test fastapi post for inference above"""
 
         response = self.client.post("/", json=self.input_above)
-   
+
         assert response.status_code == 200
         assert response.json() == "salary is prabaly is more than 50k"
 
