@@ -12,13 +12,12 @@ import train_model
 import data_ingestion
 
 
-
 data_folder = '../data/'
 data_path = os.path.join(data_folder, 'census.csv')
 save_name = os.path.join(data_folder, 'clean_census_data.csv')
 
-#to suppress other logging 
-#https://stackoverflow.com/questions/35898160/logging-module-not-writing-to-file
+# to suppress other logging
+# https://stackoverflow.com/questions/35898160/logging-module-not-writing-to-file
 
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
@@ -28,9 +27,10 @@ logging.basicConfig(
     format='%(name)s - %(levelname)s - %(message)s',
     filename="./logs/TDD_cases.log",
     filemode='w',
-    )
+)
 
 logger = logging.getLogger()
+
 
 def get_time(function):
     '''
@@ -54,9 +54,9 @@ class TestingAndLogging(unittest.TestCase):
 
     def setUp(self):
         '''prepare parameters to be used in the test'''
-      
+
         self.df = pd.read_csv(data_path, skipinitialspace=True)
-    
+
     @get_time
     def test_import(self):
         ''' test data import'''
@@ -79,7 +79,7 @@ class TestingAndLogging(unittest.TestCase):
 
         except AssertionError as err:
             logger.error(
-                "Testing import_data: The file doesn't appear to have rows and columns")
+                "Test import_data:file doesn't appear to have rows & columns")
             raise err
 
     @get_time
@@ -87,9 +87,9 @@ class TestingAndLogging(unittest.TestCase):
         '''test read_and_clean'''
 
         try:
-            #modify later to pass a file name
+            # modify later to pass a file name
             data_ingestion.read_and_clean()
-            
+
         except Exception as err:
             logger.error(
                 "someting is wrong with read_and_clean()")
@@ -111,5 +111,3 @@ class TestingAndLogging(unittest.TestCase):
 if __name__ == '__main__':
 
     unittest.main()
-
-  

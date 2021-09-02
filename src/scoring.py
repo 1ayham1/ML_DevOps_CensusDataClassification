@@ -17,7 +17,7 @@ def score_model(X_in, y_val, label='testing'):
     """Function for model scoring
 
     Given a trained model, relevent data is loaded, and F1 score is
-    then calculated. 
+    then calculated.
 
     """
 
@@ -27,26 +27,28 @@ def score_model(X_in, y_val, label='testing'):
     with open(model_path, 'rb') as file:
         model = pickle.load(file)
 
-
     logger.info("Scoring:...........")
-    
+
     preds_vals = model.predict(X_in)
-    precision_tr, recall_tr, fbeta_tr = compute_model_metrics(y_val, preds_vals)
-  
+    precision_tr, recall_tr, fbeta_tr = compute_model_metrics(
+        y_val, preds_vals)
+
     print(
-    f"""{label} scores....\n{'-'*50}\n
+        f"""{label} scores....\n{'-'*50}\n
     precision: {precision_tr}\n
     recall: {recall_tr}\n
     fbeta: {fbeta_tr}\n""")
 
     print(f"{'='*50}")
 
-    return precision_tr, recall_tr, fbeta_tr 
+    return precision_tr, recall_tr, fbeta_tr
 
 
 def compute_model_metrics(y, preds):
-    """
-    Validates the trained machine learning model using precision, recall, and F1.
+    """performance evaluation!
+
+    validates the trained machine learning model using
+    precision, recall, and F1.
 
     Inputs
     ------
@@ -63,7 +65,7 @@ def compute_model_metrics(y, preds):
     fbeta = fbeta_score(y, preds, beta=1, zero_division=1)
     precision = precision_score(y, preds, zero_division=1)
     recall = recall_score(y, preds, zero_division=1)
-    
-    #accuracy = sum(y == preds) / float(len(preds))
+
+    """accuracy = sum(y == preds) / float(len(preds))"""
 
     return precision, recall, fbeta
