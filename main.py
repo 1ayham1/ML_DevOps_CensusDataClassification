@@ -10,7 +10,7 @@ import sys
 import joblib
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 import pandas as pd
 
@@ -26,17 +26,29 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
 class InData(BaseModel):
     """data definition to be used in the app."""
 
-    Age: int
-    Workclass: str
-    Education: str
-    Marital: str
-    Occupation: str
-    Relationship: str
-    Race: str
-    Sex: str
-    Weekhour: int
-    Country: str
+    age: int = Field(...,example=45)
+    workclass: str = Field(...,example="State-gov", )
+    education: str = Field(...,example="Doctorate")
+    mstatus: str = Field(..., example="Never-married", alias="marital-status")
+    occupation: str = Field(...,example="Farming-fishing")
+    relationship: str = Field(...,example="Unmarried")
+    race: str = Field(...,example="White")
+    sex: str = Field(...,example="Female")
+    hpw: int = Field(...,example=20,alias="hours-per-week")
+    country: str = Field(...,example="United-States", alias="native-country")
 
+"""
+data_pack = InData(
+    Age=45,Workclass="State-gov",Education="Doctorate",
+    Marital ="Never-married", Occupation="Farming-fishing"
+    Relationship="Unmarried",Race= "White",
+    Sex="Female",Weekhour=20,Country="United-States")
+
+orig_col_names = [
+    "age","workclass","education","marital-status",
+    "occupation","relationship","race","sex",
+    "hours-per-week","native-country"]
+"""
 
 model_path = "./src/model/trainedmodel.pkl"
 model = joblib.load(model_path)
@@ -54,15 +66,27 @@ async def welcome():
 async def predict_item(item: InData):
 
     input_data = {
-        "age": item.Age, "workclass": item.Workclass,
-        "education": item.Education, "marital-status": item.Marital,
-        "occupation": item.Occupation, "relationship": item.Relationship,
-        "race": item.Race, "sex": item.Sex,
-        "hours-per-week": item.Weekhour, "native-country": item.Country
+        "age": item.age, "workclass": item.workclass,
+        "education": item.education, "marital-status": item.mstatus,
+        "occupation": item.occupation, "relationship": item.relationship,
+        "race": item.race, "sex": item.sex,
+        "hours-per-week": item.hpw, "native-country": item.country
     }
+    
+    """
+    item_dict = item.dict()
 
+    for key,val in input_data.items():
+        
+        item.dict.update({key:val})
+
+
+    input_df = pd.DataFrame(item_dict, index=[0, ])
+
+    """
+    
     input_df = pd.DataFrame(input_data, index=[0, ])
-
+    
     preds_vals = model.predict(input_df)
 
     if preds_vals[0] == 0:
@@ -72,3 +96,4 @@ async def predict_item(item: InData):
         output_msg = "salary is prabaly is more than 50k"
 
     return output_msg
+    
