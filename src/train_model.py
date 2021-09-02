@@ -20,6 +20,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import f1_score
+from sklearn.model_selection import GridSearchCV
 
 import scoring
 
@@ -50,15 +51,18 @@ def data_split():
  
 def get_inference_pipeline(clf_model):
     """classify and preprocess data. return inference pipeline"""
-    
+    """
     ordinal_categorical = ["education","occupation"]
     
     ordinal_categorical_preproc = make_pipeline(
         SimpleImputer(strategy="most_frequent"), 
         OrdinalEncoder(),
     )
+    """
 
-    non_ordinal_categorical = ["sex","marital-status","relationship","race","native-country"]
+    non_ordinal_categorical = [
+        "education","occupation","sex","marital-status",
+        "relationship","race","native-country"]
     
     non_ordinal_categorical_preproc = make_pipeline(
         SimpleImputer(strategy="most_frequent"), 
@@ -105,9 +109,16 @@ def train_models(train_from_scratch=True):
         
         
         model = get_inference_pipeline()
+
+        logger.info("Searching Parameters............")
+        param_grid = {
+            'C': [0.1,1, 10, 100], 'gamma': [1,0.1,0.01,0.001],
+            'kernel': ['rbf', 'poly', 'sigmoid']}
+        
+        grid = GridSearchCV(model,param_grid,refit=True,verbose=2)
         
         logger.info("fitting model..........")
-        model.fit(X_train, y_train)
+        grid.fit(X_train, y_train)
 
         logger.info("saving the model............")
         pickle.dump(model, open(model_name, 'wb'))
