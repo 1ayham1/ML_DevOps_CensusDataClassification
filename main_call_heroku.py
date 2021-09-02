@@ -4,17 +4,19 @@ import requests
 
 
 input_below = {
-    "age":40, "workclass":"State-gov",
-    "education":"Doctorate", "marital-status":"Never-married",
-    "occupation":"Farming-fishing", "relationship":"Unmarried",
-    "race": "White", "sex":"Female",
-    "hours-per-week": 40 ,"native-country": "United-States"
-    }
+    "age": 40, "workclass": "State-gov",
+    "education": "Doctorate", "marital-status": "Never-married",
+    "occupation": "Farming-fishing", "relationship": "Unmarried",
+    "race": "White", "sex": "Female",
+    "hours-per-week": 40, "native-country": "United-States"
+}
 
 ###############################
 """Again response 422?????"""
 ###############################
-response = requests.post("https://prediction-demo.herokuapp.com/",json=input_below)
+response = requests.post(
+    "https://prediction-demo.herokuapp.com/",
+    json=input_below)
 
 print(response)
 
