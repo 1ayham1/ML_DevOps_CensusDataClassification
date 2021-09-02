@@ -77,7 +77,7 @@ def get_inference_pipeline(clf_model):
     #put everything together
     preprocessor = ColumnTransformer(
         transformers=[
-            ("ordinal_cat", ordinal_categorical_preproc, ordinal_categorical),
+            #("ordinal_cat", ordinal_categorical_preproc, ordinal_categorical),
             ("non_ordinal_cat", non_ordinal_categorical_preproc, non_ordinal_categorical),
             ("impute_numer", numeric_cols_preproc, numeric_cols),
         ],
