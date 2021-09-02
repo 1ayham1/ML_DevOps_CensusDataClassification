@@ -49,7 +49,7 @@ def data_split():
 
 
  
-def get_inference_pipeline(clf_model):
+def get_inference_pipeline():
     """classify and preprocess data. return inference pipeline"""
     """
     ordinal_categorical = ["education","occupation"]
@@ -85,10 +85,19 @@ def get_inference_pipeline(clf_model):
     )
 
     clf_svm = SVC(random_state = 42, kernel='rbf')
+
+    logger.info("Searching Parameters............")
+    param_grid = {
+        'C': [1.5], 'gamma': [2,10],
+        'kernel': ['rbf']}
+    
+    grid_svm = GridSearchCV(clf_svm,param_grid,refit=True,verbose=2)
+
+
     #Use the explicit Pipeline constructor so you can assign the names to the steps, do not use make_pipeline
     sk_pipe = Pipeline([
             ("preprocessor", preprocessor),
-            ("random_forest", clf_svm),
+            ("random_forest", grid_svm),
     ])
 
     return sk_pipe
@@ -107,26 +116,16 @@ def train_models(train_from_scratch=True):
 
         logger.info("Training a new model............")
         
-        
         model = get_inference_pipeline()
 
-        logger.info("Searching Parameters............")
-        param_grid = {
-            'C': [0.1,1, 10, 100], 'gamma': [1,0.1,0.01,0.001],
-            'kernel': ['rbf', 'poly', 'sigmoid']}
-        
-        grid = GridSearchCV(model,param_grid,refit=True,verbose=2)
-        
         logger.info("fitting model..........")
-        grid.fit(X_train, y_train)
+        model.fit(X_train, y_train)
 
         logger.info("saving the model............")
         pickle.dump(model, open(model_name, 'wb'))
 
     else:
         logger.info("loading saved model............")
-
-        
 
         model = joblib.load(model_name)
 
@@ -138,4 +137,4 @@ def train_models(train_from_scratch=True):
     
 
 if __name__ == "__main__":
-    train_models(train_from_scratch=False)
+    train_models(train_from_scratch=True)
