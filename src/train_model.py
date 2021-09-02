@@ -133,4 +133,4 @@ def train_models(train_from_scratch=True):
 
 
 if __name__ == "__main__":
-    train_models(train_from_scratch=True)
+    train_models(train_from_scratch=False)
