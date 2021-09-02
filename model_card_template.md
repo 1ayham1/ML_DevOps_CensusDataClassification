@@ -32,9 +32,41 @@ For additional information see the Model Card paper: https://arxiv.org/pdf/1810.
     * `f1_score`: the harmonic mean of precision and recall
 
 * The above metrics provide values for different errors that can be calculated from the confusion matrix for binary classification systems.
+
+* Score Summary for Training Data:
+```
+--------------------------------------------------
+
+    precision: 0.8278457196613358
+
+    recall: 0.7327227310574521
+
+    fbeta: 0.7773851590106007
+
+==================================================
+```
+
+* Score Summary for Testing Data:
+
+```
+--------------------------------------------------
+
+    precision: 0.6804511278195489
+
+    recall: 0.4823451032644903
+
+    fbeta: 0.5645224171539961
+
+==================================================
+```
+* An extensive presentation for the above scores computed for given categorical variables when their values are held fixed is under `/src/mode/slice_output.txt`
+
+
 ## Ethical Considerations
 
 * The app is intended for learning purposes and a simple model was utilized. No new information is to be inferred or business decisions to be made.
+
+* It is ,however, worth commenting on **model fairness** when the above metrics were computed on a given categorical variable when its value is held fixed. Without loss of generality, considering category _education_ for example, the precision was 1.0 when _5th-6th_ feaure was held fixed and droped to 0.0 when _10th_ or _7th-8th_ was held fixed. Similar interesting trends can be observed for other categories `sex`, `race` ..etc. results can be found under `/src/mode/slice_output.txt` 
 ## Caveats and Recommendations
 
 * Does not rank features by their importance. Moreover, some features are redundant. Some effort has been done to feature engineer the data, but a more advanced method could be used. This in turn can be reported as a source of errors.
