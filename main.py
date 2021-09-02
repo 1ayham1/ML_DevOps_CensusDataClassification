@@ -50,7 +50,7 @@ async def welcome():
     return {'message': 'Welcome... !'}
 
 # This allows sending of data (TaggedItem) via POST to the API.
-@app.post("/predict")
+@app.post("/")
 async def predict_item(item: InData):
     
     input_data = {

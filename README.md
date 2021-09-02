@@ -43,6 +43,9 @@ get credintials after from IAM (AWS Acess Key ID, AWS Secret Access Key)
 
     * [DVC_Basics](https://www.youtube.com/watch?v=kLKBcPonMYw)
 
+    * [Heroku example](https://www.youtube.com/watch?v=QdhwYWwYfc0)
+
+    `git push heroku main`
 
 ```
 pip install pipreqs

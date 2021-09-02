@@ -60,7 +60,7 @@ class TestingAndLogging(unittest.TestCase):
     ###################################################################
     def test_below_salary(self):
 
-        response = self.client.post("/predict",json=self.input_below)
+        response = self.client.post("/",json=self.input_below)
         print("*"*80)
         print(response)
         
