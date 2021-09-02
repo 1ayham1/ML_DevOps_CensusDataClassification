@@ -1,8 +1,8 @@
 import setuptools
 
 setuptools.setup(
-    name="starter",
-    version="0.0.0",
-    description="Starter code.",
-    author="Student",
+    name="prediction-demo",
+    version="0.0.1",
+    description="ML FastApi deployedb by Heroku",
+    author="Ayham Z.",
 )
