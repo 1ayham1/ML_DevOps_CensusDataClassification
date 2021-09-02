@@ -59,7 +59,7 @@ class TestingAndLogging(unittest.TestCase):
 
     @get_time
     def test_import(self):
-        ''' test data import'''
+        ''' test data import and '''
 
         try:
             df = pd.read_csv(data_path, skipinitialspace=True)
