@@ -5,8 +5,18 @@ default port: 127.0.0.1:8000
 default docs: 127.0.0.1:8000/docs
 """
 
+import os
 import joblib
 import pandas as pd
+
+#give Heroku the ability to pull in data from DVC upon app start up. uses buildpack
+if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
+
+
 
 #Import Union supports Item object that have tags as either strings a list.
 from typing import Union 
@@ -27,6 +37,8 @@ class InData(BaseModel):
     Sex: str
     Weekhour:int
     Country: str
+
+
 
 
 
