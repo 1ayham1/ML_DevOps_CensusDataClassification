@@ -6,8 +6,6 @@ link: https://fastapi.tiangolo.com/tutorial/testing/
 import time
 import os
 import unittest
-import json
-
 
 from fastapi.testclient import TestClient
 
