@@ -58,6 +58,8 @@ pip freeze > requirements.txt [extract all depen. in an envriorment]
     * Make sure you set up the GitHub Action to have the same version of Python as you used in development.
 * Set up a remote repository for dvc.
 
+* push to heroku after connecting the repo: `git push heroku main`
+
 
 # Model
 * Using the starter code, write a machine learning model that trains on the clean data and saves the model. Complete any function that has been started.
