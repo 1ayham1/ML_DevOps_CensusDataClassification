@@ -1,5 +1,4 @@
 """
-
 run with: uvicorn main:app --reload
 default port: 127.0.0.1:8000
 default docs: 127.0.0.1:8000/docs
@@ -15,7 +14,6 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
     if os.system("dvc pull") != 0:
         exit("dvc pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
-
 
 
 #Import Union supports Item object that have tags as either strings a list.
@@ -39,9 +37,6 @@ class InData(BaseModel):
     Country: str
 
 
-
-
-
 model_path = "./src/model/trainedmodel.pkl"
 
 model = joblib.load(model_path)
@@ -58,26 +53,6 @@ async def welcome():
 @app.post("/predict")
 async def predict_item(item: InData):
     
-    age_ = item.Age
-    wclass_ = item.Workclass
-    edu_= item.Education
-    mat_ = item.Marital
-    occ_ = item.Occupation
-    rel_ = item.Relationship
-    ras_ = item.Race
-    sex_ = item.Sex
-    hpw_ = item.Weekhour
-    nctr_ = item.Country
-
-    input_data = {
-        "age":age_, "workclass":wclass,
-        "education":edu_, "marital-status":mat_,
-        "occupation":occ_, "relationship":rel_,
-        "race":ras_ , "sex":sex_,
-        "hours-per-week":hpw_  ,"native-country": nctr_
-        }
-
-    """
     input_data = {
         "age":item.Age, "workclass":item.Workclass,
         "education":item.Education, "marital-status":item.Marital,
@@ -85,20 +60,16 @@ async def predict_item(item: InData):
         "race": item.Race, "sex":item.Sex,
         "hours-per-week": item.Weekhour ,"native-country": item.Country
         }
-    """
- 
-
+    
     input_df = pd.DataFrame(input_data,index=[0,])
 
     preds_vals = model.predict(input_df)
     
     if(preds_vals[0]==0):
         output_msg = "salary is prabaly is less than 50k"
-        
-
+    
     else:
         output_msg = "salary is prabaly is more than 50k"
-
     
     return output_msg
 
