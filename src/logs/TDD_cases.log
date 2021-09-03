@@ -1,12 +1,12 @@
 root - INFO - Testing import_data: SUCCESS
 root - INFO - input data has 32561 rows and 15 columns
-root - INFO - test_import ran in 0.078 sec 
+root - INFO - test_import ran in 0.071 sec 
 root - INFO - ---------------------------------------------------
 root - INFO - reading input data...
 root - INFO - cleaning...
 numexpr.utils - INFO - NumExpr defaulting to 8 threads.
 root - INFO - save output...
-root - INFO - test_read_and_clean ran in 0.334 sec 
+root - INFO - test_read_and_clean ran in 0.323 sec 
 root - INFO - ---------------------------------------------------
 root - INFO - reading and processing data
 root - INFO - loading saved model............
@@ -14,3 +14,8 @@ root - INFO - Model Evaluation............
 
 root - INFO - read and load trained model
 root - INFO - Scoring:...........
+root - INFO - read and load trained model
+root - INFO - Scoring:...........
+root - INFO - train_models ran successfully!
+root - INFO - test_train_models ran in 24.773 sec 
+root - INFO - ---------------------------------------------------
