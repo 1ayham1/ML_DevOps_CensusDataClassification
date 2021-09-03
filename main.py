@@ -40,7 +40,7 @@ class InData(BaseModel):
 
 model_path = 'src/model/'
 print("?" * 50)
-print(os.system(pwd))
+print(os.system("pwd"))
 
 
 model_name = os.path.join(model_path, "trainedmodel.pkl")
