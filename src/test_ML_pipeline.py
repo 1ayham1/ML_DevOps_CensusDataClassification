@@ -25,9 +25,6 @@ for handler in logging.root.handlers[:]:
 
 dirname = os.path.abspath('src/logs/')
 log_name = os.path.join(dirname, 'TDD_cases.log')
-print("?" * 50)
-print(log_name)
-
 
 logging.basicConfig(
     level=logging.INFO,

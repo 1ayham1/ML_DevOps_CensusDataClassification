@@ -39,10 +39,6 @@ class InData(BaseModel):
 
 
 model_path = os.path.abspath('src/model/')
-print("?" * 50)
-print(model_path)
-
-
 model_name = os.path.join(model_path, "trainedmodel.pkl")
 
 model = joblib.load(model_name)
