@@ -38,7 +38,7 @@ class InData(BaseModel):
     country: str = Field(..., example="United-States", alias="native-country")
 
 
-model_path = 'src/model/'
+model_path = os.system("pwd")+'/src/model/'
 print("?" * 50)
 print(os.system("ls"))
 
