@@ -38,21 +38,10 @@ class InData(BaseModel):
     country: str = Field(..., example="United-States", alias="native-country")
 
 
-"""
-data_pack = InData(
-    Age=45,Workclass="State-gov",Education="Doctorate",
-    Marital ="Never-married", Occupation="Farming-fishing"
-    Relationship="Unmarried",Race= "White",
-    Sex="Female",Weekhour=20,Country="United-States")
+model_path = os.path.abspath('src/model/')
+model_name = os.path.join(model_path, "trainedmodel.pkl")
 
-orig_col_names = [
-    "age","workclass","education","marital-status",
-    "occupation","relationship","race","sex",
-    "hours-per-week","native-country"]
-"""
-
-model_path = "./src/model/trainedmodel.pkl"
-model = joblib.load(model_path)
+model = joblib.load(model_name)
 
 # instantiate the app
 app = FastAPI()
@@ -65,6 +54,13 @@ async def welcome():
 
 @app.post("/")
 async def predict_item(item: InData):
+    """ perform inference
+
+    consider improving by:
+    item_dict = item.dict()
+    for key,val in input_data.items():
+        item.dict.update({key:val})
+    """
 
     input_data = {
         "age": item.age, "workclass": item.workclass,
@@ -73,18 +69,6 @@ async def predict_item(item: InData):
         "race": item.race, "sex": item.sex,
         "hours-per-week": item.hpw, "native-country": item.country
     }
-
-    """
-    item_dict = item.dict()
-
-    for key,val in input_data.items():
-
-        item.dict.update({key:val})
-
-
-    input_df = pd.DataFrame(item_dict, index=[0, ])
-
-    """
 
     input_df = pd.DataFrame(input_data, index=[0, ])
 
