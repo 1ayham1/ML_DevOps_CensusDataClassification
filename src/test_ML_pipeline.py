@@ -23,7 +23,7 @@ save_name = os.path.join(data_folder, 'clean_census_data.csv')
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 
-log_name = os.path.abspath('./src/logs/TDD_cases.log')
+log_name = os.path.abspath('/src/logs/TDD_cases.log')
 
 
 logging.basicConfig(
