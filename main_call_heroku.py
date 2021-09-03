@@ -11,14 +11,15 @@ input_below = {
     "hours-per-week": 40, "native-country": "United-States"
 }
 
-###############################
-"""Again response 422?????"""
-###############################
 response = requests.post(
     "https://prediction-demo.herokuapp.com/",
     json=input_below)
 
-print(response)
+
 
 assert response.status_code == 200
-assert response.json() == "salary is prabaly is above than 50k"
+assert response.json() == "salary is prabaly is less than 50k"
+print('-'*50)
+print(f"post response: {response.status_code}")
+print(f"post output:\n {response.json()}\n")
+print('='*50)
