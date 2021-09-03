@@ -25,7 +25,6 @@ for handler in logging.root.handlers[:]:
 
 log_name = os.path.abspath('./src/logs/TDD_cases.log')
 
-#log_name = os.path.join(log_folder, 'TDD_cases.log')
 
 logging.basicConfig(
     level=logging.INFO,
