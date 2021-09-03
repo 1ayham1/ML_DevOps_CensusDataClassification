@@ -38,9 +38,11 @@ class InData(BaseModel):
     country: str = Field(..., example="United-States", alias="native-country")
 
 
-model_path = './src/model/'
+model_path = 'src/model/'
 print("?" * 50)
-print(model_path)
+print(os.system(pwd))
+
+
 model_name = os.path.join(model_path, "trainedmodel.pkl")
 
 model = joblib.load(model_name)
