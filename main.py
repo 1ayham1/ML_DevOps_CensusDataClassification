@@ -38,7 +38,7 @@ class InData(BaseModel):
     country: str = Field(..., example="United-States", alias="native-country")
 
 
-model_path = './src/model/'
+model_path = 'ML_DevOps_CensusDataClassification/src/model/'
 print("?" * 50)
 print(model_path)
 model_name = os.path.join(model_path, "trainedmodel.pkl")
