@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 
-data_folder = '../data/'
+data_folder = os.path.abspath("./data/")
 
 data_path = os.path.join(data_folder, 'census.csv')
 save_name = os.path.join(data_folder, 'clean_census_data.csv')

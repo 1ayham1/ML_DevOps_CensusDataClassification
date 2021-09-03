@@ -10,7 +10,7 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
-model_folder = os.path.abspath('model')
+model_path = os.path.abspath('src/model/')
 
 
 def score_model(X_in, y_val, label='testing'):
@@ -23,8 +23,8 @@ def score_model(X_in, y_val, label='testing'):
 
     logger.info("read and load trained model")
 
-    model_path = os.path.join(model_folder, "trainedmodel.pkl")
-    with open(model_path, 'rb') as file:
+    model_name = os.path.join(model_path, "trainedmodel.pkl")
+    with open(model_name, 'rb') as file:
         model = pickle.load(file)
 
     logger.info("Scoring:...........")

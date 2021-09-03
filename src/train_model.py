@@ -25,14 +25,18 @@ import scoring
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
-model_path = os.path.abspath('model')
+model_path = os.path.abspath('src/model/')
+
 model_name = os.path.join(model_path, "trainedmodel.pkl")
+
+data_folder = os.path.abspath("./data/")
 
 
 def data_split():
     """returns data {X,y} splitted in training and testing"""
 
-    df_data = pd.read_csv("../data/clean_census_data.csv")
+    f_name = os.path.join(data_folder, "clean_census_data.csv")
+    df_data = pd.read_csv(f_name)
 
     X_data = df_data.drop('salary', axis=1)
     y_response = df_data['salary']

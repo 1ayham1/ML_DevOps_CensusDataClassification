@@ -12,7 +12,8 @@ import train_model
 import data_ingestion
 
 
-data_folder = '../data/'
+data_folder = os.path.abspath("./data/")
+
 data_path = os.path.join(data_folder, 'census.csv')
 save_name = os.path.join(data_folder, 'clean_census_data.csv')
 
@@ -22,10 +23,14 @@ save_name = os.path.join(data_folder, 'clean_census_data.csv')
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 
+log_name = os.path.abspath('./src/logs/TDD_cases.log')
+
+#log_name = os.path.join(log_folder, 'TDD_cases.log')
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(name)s - %(levelname)s - %(message)s',
-    filename="./logs/TDD_cases.log",
+    filename=log_name,
     filemode='w',
 )
 
